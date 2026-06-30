@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Резюме · GitHub Pages</title>
+    <style>
+        /* ---- сброс и база ---- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0d1117;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            color: #e6edf3;
+            line-height: 1.5;
+        }
+
+        /* ---- карточка резюме ---- */
+        .resume {
+            max-width: 1000px;
+            width: 100%;
+            background: #161b22;
+            border-radius: 28px;
+            padding: 2.5rem 2.8rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            border: 1px solid #30363d;
+            transition: all 0.2s ease;
+        }
+
+        /* ---- шапка ---- */
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1.5rem;
+            border-bottom: 1px solid #30363d;
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .header-left h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #f0f6fc 0%, #58a6ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.25rem;
+        }
+
+        .header-left .title {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #8b949e;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .header-left .title span {
+            background: #21262d;
+            padding: 0.1rem 0.7rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            color: #58a6ff;
+            border: 1px solid #30363d;
+        }
+
+        .header-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.4rem;
+            font-size: 0.95rem;
+            color: #c9d1d9;
+        }
+
+        .header-right a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+
+        .header-right a:hover {
+            color: #79c0ff;
+            text-decoration: underline;
+        }
+
+        .header-right .badge {
+            background: #1f2937;
+            padding: 0.2rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            color: #8b949e;
+            border: 1px solid #30363d;
+            margin-top: 4px;
+        }
+
+        /* ---- сетка 2 колонки ---- */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 2.2fr;
+            gap: 2.2rem;
+        }
+
+        /* ---- левая колонка ---- */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .section-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #8b949e;
+            margin-bottom: 0.8rem;
+            border-bottom: 1px solid #21262d;
+            padding-bottom: 0.4rem;
+        }
+
+        .sidebar .info-item {
+            margin-bottom: 0.75rem;
+        }
+
+        .sidebar .info-item .label {
+            font-size: 0.75rem;
+            color: #8b949e;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .sidebar .info-item .value {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #f0f6fc;
+        }
+
+        .sidebar .info-item .value a {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+
+        .sidebar .info-item .value a:hover {
+            text-decoration: underline;
+        }
+
+        /* навыки */
+        .skillset {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 0.5rem;
+            margin-top: 0.2rem;
+        }
+
+        .skill-tag {
+            background: #1f2937;
+            padding: 0.2rem 0.9rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            border: 1px solid #30363d;
+            color: #c9d1d9;
+            letter-spacing: 0.02em;
+        }
+
+        .skill-tag.highlight {
+            background: #1d2d3f;
+            border-color: #58a6ff;
+            color: #b6d4ff;
+        }
+
+        /* языки */
+        .lang-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+            padding: 0.2rem 0;
+            border-bottom: 1px dashed #21262d;
+        }
+
+        .lang-item:last-child {
+            border-bottom: none;
+        }
+
+        .lang-item .level {
+            color: #8b949e;
+            font-size: 0.85rem;
+        }
+
+        /* ---- правая колонка (опыт) ---- */
+        .main {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .exp-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .exp-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.3rem 0.8rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .exp-header h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #f0f6fc;
+        }
+
+        .exp-header .company {
+            font-weight: 400;
+            color: #8b949e;
+            font-size: 0.95rem;
+        }
+
+        .exp-header .date {
+            font-size: 0.8rem;
+            background: #1f2937;
+            padding: 0.1rem 0.8rem;
+            border-radius: 30px;
+            color: #8b949e;
+            border: 1px solid #2d333b;
+            white-space: nowrap;
+        }
+
+        .exp-desc {
+            margin-top: 0.3rem;
+            padding-left: 0.2rem;
+            color: #c9d1d9;
+            font-size: 0.95rem;
+        }
+
+        .exp-desc ul {
+            list-style: none;
+            padding-left: 0.2rem;
+        }
+
+        .exp-desc ul li {
+            position: relative;
+            padding-left: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .exp-desc ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #58a6ff;
+        }
+
+        /* образование */
+        .edu-item {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 0.3rem 1rem;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #21262d;
+        }
+
+        .edu-item:last-child {
+            border-bottom: none;
+        }
+
+        .edu-item .edu-name {
+            font-weight: 500;
+            color: #f0f6fc;
+        }
+
+        .edu-item .edu-meta {
+            color: #8b949e;
+            font-size: 0.9rem;
+        }
+
+        /* ---- адаптив ---- */
+        @media (max-width: 750px) {
+            .resume {
+                padding: 1.8rem 1.2rem;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 1.8rem;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .header-right {
+                align-items: flex-start;
+                width: 100%;
+            }
+            .header-left h1 {
+                font-size: 2.4rem;
+            }
+            .exp-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .header-right .badge {
+                align-self: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .resume {
+                padding: 1.2rem 0.8rem;
+                border-radius: 18px;
+            }
+            .header-left h1 {
+                font-size: 2rem;
+            }
+            .skill-tag {
+                font-size: 0.7rem;
+                padding: 0.1rem 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="resume">
+
+        <!-- ШАПКА -->
+        <div class="header">
+            <div class="header-left">
+                <h1>Яковлев Валерий</h1>
+                <div class="title">
+                    Full‑Stack Developer
+                    <span>React + Node.js</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <a href="mailto:valeraakovlev57@gami.com">✉ alex@example.com</a>
+                <a href="#">🐙 github.com/ValeriyYakovlev</a>
+		<span class="badge">📍Муром готов к релокации</span>
+            </div>
+        </div>
+
+        <!-- ОСНОВНОЙ БЛОК (2 колонки) -->
+        <div class="grid">
+
+            <!-- ЛЕВАЯ КОЛОНКА -->
+            <div class="sidebar">
+
+                <!-- О себе -->
+                <div>
+                    <div class="section-title">О себе</div>
+                    <p style="color: #c9d1d9; font-size: 0.95rem; line-height: 1.6;">
+                         Опыта нет =)
+                      
+                    </p>
+                </div>
+
+                <!-- Контакты -->
+                <div>
+                    <div class="section-title">Контакты</div>
+                    <div class="info-item">
+                        <div class="label">Телефон</div>
+                        <div class="value">+7 (980) 755-03-50</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">Telegram</div>
+                        <div class="value"><a href="#">@BBRage</a></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">GitHub</div>
+                        <div class="value"><a href="#">github.com/ValeraiyYakovlev</a></div>
+                    </div>
+                </div>
+
+                <!-- Навыки -->
+                <div>
+                    <div class="section-title">Навыки</div>
+                    <div class="skillset">
+                        <span class="skill-tag highlight">JavaScript</span>
+                        <span class="skill-tag highlight">TypeScript</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Git</span>
+                    </div>
+                </div>
+
+                <!-- Языки -->
+                <div>
+                    <div class="section-title">Языки</div>
+                    <div class="lang-item"><span>Русский</span><span class="level">Родной</span></div>
+                    <div class="lang-item"><span>Английский</span><span class="level">B2 – Upper‑Intermediate</span></div>
+                </div>
+
+                <!-- Интересы (коротко) -->
+                <div>
+                    <div class="section-title">Интересы</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.3rem 0.6rem;">
+                        <span class="skill-tag">Open Source</span>
+                        <span class="skill-tag">DevOps</span>
+                        <span class="skill-tag">FinTech</span>
+                        <span class="skill-tag">Спорт</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ПРАВАЯ КОЛОНКА (опыт + образование) -->
+            <div class="main">
+
+                                <!-- Образование -->
+                <div>
+                    <div class="section-title">Образование</div>
+                    <div class="edu-item">
+                        <span class="edu-name">МиВЛГУ им.Столетовых</span>
+                        <span class="edu-meta">Информационная безопасность 2025-2030</span>
+                    </div>
+                    <div class="edu-item">
+                        <span class="edu-name">Курс «Алгоритмы и структуры данных»</span>
+                    </div>
+                </div>
+
+                <!-- Дополнительно (проекты) -->
+                <div>
+                    <div class="section-title">Проекты</div>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <div><span style="color:#58a6ff;">▸</span> <strong>TaskFlow</strong> — доска задач с drag‑and‑drop (React, Zustand, Firebase).</div>
+                        <div><span style="color:#58a6ff;">▸</span> <strong>Weather Dashboard</strong> — SPA с графиками (Vue.js, D3).</div>
+                        <div><span style="color:#58a6ff;">▸</span> <strong>API Gateway</strong> — агрегатор микросервисов (Node.js, GraphQL).</div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /main -->
+        </div>
+        <!-- /grid -->
+
+        <!-- футер (опционально) -->
+        <div style="margin-top: 2.2rem; border-top: 1px solid #21262d; padding-top: 1.2rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; font-size: 0.8rem; color: #484f58;">
+            <span>📄 Обновлено: июль 2026</span>
+            <span>⚡ доступен для удалённой работы</span>
+        </div>
+
+    </div>
+    <!-- /resume -->
+
+</body>
+</html>
